@@ -10,10 +10,10 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully";
 
-echo $_GET['author'];
-echo $_GET["title"];
-echo $_GET['text'];
-echo $_GET['date'];
+$author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
+$title = filter_var($_GET["title"], FILTER_SANITIZE_STRING);
+$text = filter_var($_GET['text'], FILTER_SANITIZE_STRING);
+$date = filter_var($_GET['date'], FILTER_SANITIZE_URL);
 
 
 ?>
