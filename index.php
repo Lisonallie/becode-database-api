@@ -10,4 +10,10 @@ if ($conn->connect_error) {
 } 
 echo "Connected successfully";
 
+echo $_GET['author'];
+echo $_GET["title"];
+echo $_GET['text'];
+echo $_GET['date'];
+
+
 ?>

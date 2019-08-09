@@ -6,6 +6,6 @@ CREATE TABLE note
     author          VARCHAR (140)                   NULL,
     title           VARCHAR (500)                   NOT NULL,
     text_entry      TEXT                            NULL,
-    date_posted     DATE                            NULL,
+    date_posted     TIMESTAMP                       NULL        CURRENT_TIMESTAMP,
     UNIQUE (title)
 );
