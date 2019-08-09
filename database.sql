@@ -1,10 +1,11 @@
-CREATE DATABASE Notepad;
+CREATE DATABASE notepad;
 
-CREATE TABLE Note
+CREATE TABLE note
 (
-    id              INT                     NOT NULL      PRIMARY KEY AUTO_INCREMENT,
-    author          VARCHAR (140)    DEFAULT NULL,
-    title           VARCHAR (500)   DEFAULT NOT NULL,
-    text_entry      TEXT            DEFAULT NULL,
-    date_posted     DATE            DEFAULT NULL
+    id              INT              UNSIGNED       NOT NULL    PRIMARY KEY AUTO_INCREMENT,
+    author          VARCHAR (140)                   NULL,
+    title           VARCHAR (500)                   NOT NULL,
+    text_entry      TEXT                            NULL,
+    date_posted     DATE                            NULL,
+    UNIQUE (title)
 );
