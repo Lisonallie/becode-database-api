@@ -11,9 +11,16 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
-$title = filter_var($_GET["title"], FILTER_SANITIZE_STRING);
+$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
 $text = filter_var($_GET['text'], FILTER_SANITIZE_STRING);
 
-$sql = "INSERT INTO note (author, title, text_entry) VALUES ('$author', '$title', '$text')";
+$insert = "INSERT INTO note (author, text_entry) VALUES ('$author', '$text')";
+$require_title = "INSERT INTO note (title) VALUES IF NOT EXISTS ('$title')";
+
+if(mysqli_query($conn, $sql, $require_title)) {
+    echo 'Your query has been submitted.';
+} else {
+    echo 'Not submitted.';
+}
 
 ?>
