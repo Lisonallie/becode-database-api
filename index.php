@@ -12,8 +12,8 @@ echo "Connected successfully";
 
 //sanitize
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
-$text = filter_var($_GET['text'], FILTER_SANITIZE_STRING);
+$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING); /// Need to also make it post to database
+$text = filter_var($_POST['text'], FILTER_SANITIZE_STRING); /// Need to make it post the value to the URL
 
 $errors = array();
 
