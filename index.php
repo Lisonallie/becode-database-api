@@ -13,7 +13,7 @@ echo "Connected successfully";
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
 $title = filter_var($_GET["title"], FILTER_SANITIZE_STRING);
 $text = filter_var($_GET['text'], FILTER_SANITIZE_STRING);
-$date = filter_var($_GET['date'], FILTER_SANITIZE_URL);
 
+$sql = "INSERT INTO note (author, title, text_entry) VALUES ('$author', '$title', '$text')";
 
 ?>
