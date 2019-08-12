@@ -30,7 +30,6 @@ if (empty($text)) {
 if (count($errors) > 0) {
     echo "Sorry, there's an error: ";
     $json_errors = json_encode($errors);
-    var_dump($json_errors);
     exit;
 } else {
     $insert = "INSERT INTO note (author, text_entry, title) VALUES ('$author', '$text', '$title')";
