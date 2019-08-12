@@ -13,7 +13,7 @@ echo "Connected successfully";
 //sanitize
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
 $title = filter_var($_GET['title'], FILTER_SANITIZE_STRING); /// Need to also make it post to database
-$text = filter_var($_POST['text'], FILTER_SANITIZE_STRING); /// Need to make it post the value to the URL
+$text = filter_var($_GET['text'], FILTER_SANITIZE_STRING); /// Need to make it post the value to the URL
 
 $errors = array();
 
@@ -29,7 +29,7 @@ if (empty($text)) {
 
 //insert into the database if the previous conditions have been met and there's no errors.
 if (count($errors) > 0) {
-    echo "Sorry, there's an error: " . "\n<br";
+    echo "Sorry, there's an error: ";
     $json_errors = json_encode($errors);
     var_dump($json_errors);
     exit;
@@ -37,6 +37,7 @@ if (count($errors) > 0) {
     $insert = "INSERT INTO note (author, text_entry, title) VALUES ('$author', '$text', '$title')";
     if (mysqli_query($conn, $insert)) {
         echo "Congratulations.";
+        $_POST($text);
     } else {
         echo "Not submitted.";
     }
