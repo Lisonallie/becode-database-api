@@ -12,11 +12,10 @@ echo "Connected successfully";
 
 //sanitize
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING); /// Need to also make it post to database
-$text = filter_var($_GET['text'], FILTER_SANITIZE_STRING); /// Need to make it post the value to the URL
+$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
+$text = filter_var($_POST['text'], FILTER_SANITIZE_STRING);
 
 $errors = array();
-
 
 //validate
 if (empty($title)) {
@@ -25,7 +24,7 @@ if (empty($title)) {
 
 if (empty($text)) {
     $errors['text'] = "Text may not be empty.";
-}
+} 
 
 //insert into the database if the previous conditions have been met and there's no errors.
 if (count($errors) > 0) {
@@ -37,14 +36,9 @@ if (count($errors) > 0) {
     $insert = "INSERT INTO note (author, text_entry, title) VALUES ('$author', '$text', '$title')";
     if (mysqli_query($conn, $insert)) {
         echo "Congratulations.";
-        $_POST($text);
     } else {
         echo "Not submitted.";
     }
 }
-
-
-
-
 
 ?>
