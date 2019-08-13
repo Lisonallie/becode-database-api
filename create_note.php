@@ -1,18 +1,14 @@
 <?php
-require "info.php";
 
 //create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+require "info.php";
 
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-//sanitize
+//sanitize and declare variable fields
 $author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
 $title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
 $text = filter_var($_POST['text'], FILTER_SANITIZE_STRING);
 
+//create array for json responses
 $feedback = array();
 
 //validate
@@ -35,7 +31,11 @@ if (count($feedback) > 0) {
         $feedback['fail'] = "Your input has not been submitted.";
     }
 }
+
+// display errors resulted in JSON format.
 $feedback_result_json = json_encode($feedback);
 echo $feedback_result_json;
 
+//end connection
+$conn = null;
 ?>
