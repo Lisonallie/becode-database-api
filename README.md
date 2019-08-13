@@ -32,4 +32,14 @@ The objectives of the project were to
 - Choose what order you want to add Delete/List/Update/Get Note code files after this.
 
 #### How to use
-My database API has 
+First, the structure of the database:
+I have 5 columns:
+1. id ---Primary key
+2. author
+3. title ---Unique key
+4. note
+5. date ---default current timestamp
+
+My database has a CREATE file which creates a new row in the database. The user inputs the variables into the URL with the `create_note.php/?author=""&title=""&text=""` format. An example of implementation of this code is: `create_note.php/?author=jerry&title=here%20I%20am&text=today%20is%20beautiful`. The author and title are required to fill in. `%20` is a space character. Author and title have a HTTP request of GET but text has a HTTP request of POST. I tested the usability of this API using the [advanced rest client api](https://advancedrestclient.com/).
+
+The DELETE file removes a row from the table which has been identified by its' 'title' attribute. 
