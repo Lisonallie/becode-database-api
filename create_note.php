@@ -12,6 +12,10 @@ $text = filter_var($_POST['text'], FILTER_SANITIZE_STRING);
 $feedback = array();
 
 //validate
+if (empty($author)) {
+    $feedback['author'] = "Author may not be empty.";
+} 
+
 if (empty($title)) {
     $feedback['title'] = "Title may not be empty.";
 } 
