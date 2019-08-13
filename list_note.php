@@ -2,39 +2,31 @@
 //create connection
 require "info.php";
 
-//sanitize and declare variable fields
-$author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
-$text = filter_var($_GET['text'], FILTER_SANITIZE_STRING);
-
 //create array for json responses
 $feedback = array();
 
-//validate
-if (empty($title)) {
-    $feedback['title'] = "Title may not be empty.";
-} 
+//list the titles
+$list = "SELECT * FROM note ORDER BY title";
 
-if (empty($text)) {
-    $feedback['text'] = "Text may not be empty.";
-}
+//establish query parameters
+$query = mysqli_query($conn, $list);
 
-//insert into the database if the previous conditions have been met and there's no feedback.
-if (count($feedback) > 0) {
-    $feedback['errors'] = "There are errors.";
+//create json-changeable variable request of all rows in the table
+$display_rows = mysqli_fetch_all($query, MYSQLI_ASSOC);
+
+//display the resulting query fetch in json format
+echo json_encode($display_rows);
+
+//create conditions for cases of success and fail connection and query requests
+if ($query) {
+    $feedback['confirm'] = "Your query has been successfully displayed.";
 } else {
-    $list = "SELECT * FROM note ORDER BY title";
-    if (mysqli_query($conn, $list)) {
-        $feedback['success'] = $list/*"Your request has been accepted."*/;
-    } else {
-        $feedback['fail'] = "Your request has not been accepted.";
-    }
+    $feedback['deny'] = "Your query could not be displayed:" . $conn -> error;
 }
 
 // display errors resulted in JSON format.
 $feedback_result_json = json_encode($feedback);
 echo $feedback_result_json;
-echo $feedback['success'];
 
 //end connection
 $conn = null;
