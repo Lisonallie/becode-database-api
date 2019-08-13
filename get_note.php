@@ -2,11 +2,14 @@
 //create connection
 require "info.php";
 
+//declare variable and sanitize
+$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
+
 //create array for json responses
 $feedback = array();
 
 //list the titles
-$get_row = "SELECT '".$title."' FROM note";
+$get_row = "SELECT * FROM note WHERE title = '".$title."'";
 
 //establish query parameters
 $query = mysqli_query($conn, $get_row);
