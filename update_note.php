@@ -15,36 +15,31 @@ $new_text = filter_var($_POST['new_text'], FILTER_SANITIZE_STRING);
 //create array for json responses
 $feedback = array();
 
-//validate
-if (empty($title)) {
-    $feedback['title'] = "Title may not be empty.";
-} 
+//update database
 
-//update database if the previous conditions have been met and there's no feedback.
-if (count($feedback) > 0) {
-    $feedback['errors'] = "There are errors.";
-} else {
     // below comment gets rid of all fields in table that are not filled in
     // "UPDATE note SET author = '".$new_author."', title = '".$new_title."', text_entry = '".$new_text."' WHERE author = '".$author."' OR title = '".$title."' OR text_entry = '".$text."'";
-    $update_author = "UPDATE note SET author = '".$new_author."' WHERE author = '".$author."'";
-    $update_title = "UPDATE note SET title = '".$new_title."' WHERE title = '".$title."'";
-    $update_text = "UPDATE note SET text_entry = '".$new_text."' WHERE text_entry = '".$text."'";
-    //separate each query so it doesn't delete the rest of the table
-    if (mysqli_query($conn, $update_author)) {
-        $feedback['success'] = "The record has been changed.";
-    } else {
-        $feedback['fail'] = "The record has not been changed.";
-    }
-    if (mysqli_query($conn, $update_title)) {
-        $feedback['success'] = "The record has been changed.";
-    } else {
-        $feedback['fail'] = "The record has not been changed.";
-    }
-    if (mysqli_query($conn, $update_text)) {
-        $feedback['success'] = "The record has been changed.";
-    } else {
-        $feedback['fail'] = "The record has not been changed.";
-    }
+$update_author = "UPDATE note SET author = '".$new_author."' WHERE author = '".$author."'";
+$update_title = "UPDATE note SET title = '".$new_title."' WHERE title = '".$title."'";
+$update_text = "UPDATE note SET text_entry = '".$new_text."' WHERE text_entry = '".$text."'";
+
+//separate each query so it doesn't delete the rest of the table
+if (mysqli_query($conn, $update_author)) {
+    $feedback['success'] = "The record has been changed.";
+} else {
+    $feedback['fail'] = "The record has not been changed.";
+}
+
+if (mysqli_query($conn, $update_title)) {
+    $feedback['success'] = "The record has been changed.";
+} else {
+    $feedback['fail'] = "The record has not been changed.";
+}
+
+if (mysqli_query($conn, $update_text)) {
+    $feedback['success'] = "The record has been changed.";
+} else {
+    $feedback['fail'] = "The record has not been changed.";
 }
 
 // display errors resulted in JSON format.
