@@ -40,6 +40,8 @@ I have 5 columns:
 4. note
 5. date ---default current timestamp
 
-My database has a CREATE file which creates a new row in the database. The user inputs the variables into the URL with the `create_note.php/?author=""&title=""&text=""` format. An example of implementation of this code is: `create_note.php/?author=jerry&title=here%20I%20am&text=today%20is%20beautiful`. The author and title are required to fill in. `%20` is a space character. Author and title have a HTTP request of GET but text has a HTTP request of POST. I tested the usability of this API using the [advanced rest client api](https://advancedrestclient.com/).
+My database has a CREATE file which creates a new row in the database. The user inputs the variables into the URL with the `create_note.php/?author=""&title=""&text=""` format. An example of implementation of this code is: `create_note.php/?author=jerry&title=here%20I%20am&text=today%20is%20beautiful`. The author and title are required to fill in. `%20` is a space character. Author and title have a HTTP request of GET but text has a HTTP request of POST. I tested the usability of this API using the [advanced rest client api](https://advancedrestclient.com/). Using this API, I could set the method to POST and fill in my GET variables in the URL. This created a new row in the table with the inputted parameters.
 
-The DELETE file removes a row from the table which has been identified by its' 'title' attribute. 
+The DELETE file removes a row from the table which has been identified by its' 'title' attribute. The given title is retrieved from the URL using the HTTP request `$_GET`. Using the API, I set the method to DELETE and typed in my title variable in the URL. Here's an example of how that could look: `delete_note/?title=here20%I20%am`. This would select the title that existed in the database with the title 'here I am', and remove it.
+
+The 
