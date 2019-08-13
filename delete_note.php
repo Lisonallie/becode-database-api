@@ -1,4 +1,4 @@
-<?
+<?php
 
 //create connection
 require "info.php";
@@ -17,7 +17,7 @@ if (empty($title)) {
 if (count($feedback) > 0) {
     $feedback['errors'] = "There are errors.";
 } else {
-    $delete = "DELETE FROM note WHERE title = $title";
+    $delete = "DELETE FROM note WHERE title = '".$title."'";
     if (mysqli_query($conn, $delete)) {
         $feedback['success'] = "The record has been deleted.";
     } else {
