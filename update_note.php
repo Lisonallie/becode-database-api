@@ -17,10 +17,10 @@ $feedback = array();
 
 //update database if the previous conditions have been met and there's no feedback.
 $update = "UPDATE note SET author = '".$new_author."', title = '".$new_title."', text_entry = '".$new_text."' WHERE author = '".$author."' OR title = '".$title."' OR text_entry = '".$text."'";
-if (mysqli_query($conn, $delete)) {
-    $feedback['success'] = "The record has been deleted.";
+if (mysqli_query($conn, $update)) {
+    $feedback['success'] = "The record has been changed.";
 } else {
-    $feedback['fail'] = "The record has not been deleted.";
+    $feedback['fail'] = "The record has not been changed.";
 }
 
 // display errors resulted in JSON format.
