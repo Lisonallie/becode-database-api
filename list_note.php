@@ -25,8 +25,7 @@ if ($query) {
 }
 
 // display errors resulted in JSON format.
-$feedback_result_json = json_encode($feedback);
-echo $feedback_result_json;
+echo json_encode($feedback);
 
 //end connection
 $conn = null;
