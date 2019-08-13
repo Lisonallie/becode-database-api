@@ -44,4 +44,6 @@ My database has a CREATE file which creates a new row in the database. The user 
 
 The DELETE file removes a row from the table which has been identified by its' 'title' attribute. The given title is retrieved from the URL using the HTTP request `$_GET`. Using the API, I set the method to DELETE and typed in my title variable in the URL. Here's an example of how that could look: `delete_note/?title=here20%I20%am`. This would select the title that existed in the database with the title 'here I am', and remove it.
 
-The 
+The UPDATE file updates an existing row in the database which is identified by its' title. The given title is retrieved from the URL using the HTTP request `$_GET`. I ran into a slight problem when I tried to update everything at once: mainly, the updated field would be updated but everything else that was left blank was erased. So I created individual cases for each iteration of UPDATE author/title and it succeeded in leaving the unfilled fields in their original state.
+Using the API, I set the method to GET and typed in my title variable and replacement variable `$new_title/$new_author` in the URL. Here's an example of how that could look: `update_note/?title=jeremy&new_title=wanda`. The new title of the column row previously having the title 'jeremy' would have the new title 'wanda' applied to it. This goes the same for 'author' as well.
+
