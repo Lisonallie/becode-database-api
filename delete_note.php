@@ -10,8 +10,24 @@ $feedback = array();
 
 //validate
 if (empty($title)) {
-    $feedback['title'] = "Title may not be empty.";
-} 
+    $feedback['title'] = "Please select a title.";
+}
 
+//delete from database if the previous conditions have been met and there's no feedback.
+if (count($feedback) > 0) {
+    $feedback['errors'] = "There are errors.";
+} else {
+    $delete = "DELETE FROM note WHERE title = $title";
+    if (mysqli_query($conn, $delete)) {
+        $feedback['success'] = "The record has been deleted.";
+    } else {
+        $feedback['fail'] = "The record has not been deleted.";
+    }
+}
 
+// display errors resulted in JSON format.
+echo json_encode($feedback);
+
+//end connection
+$conn = null;
 ?>
