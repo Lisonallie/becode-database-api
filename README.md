@@ -48,18 +48,18 @@ My database has a CREATE file which creates a new row in the database. The user 
 ### DELETE Note
 ![alt-text](http://giphygifs.s3.amazonaws.com/media/P7PmvHY6kzAqY/giphy.gif)
 
-The DELETE file removes a row from the table which has been identified by its' 'title' attribute. The given title is retrieved from the URL using the HTTP request `$_GET`. Using the API, I set the method to DELETE and typed in my title variable in the URL. Here's an example of how that could look: `delete_note/?title=here20%I20%am`. This would select the title that existed in the database with the title 'here I am', and remove it.
+The DELETE file removes a row from the table which has been identified by its' 'title' attribute. The given title is retrieved from the URL using the HTTP request `$_GET`. Using the API, I set the method to DELETE and typed in my title variable in the URL. Here's an example of how that could look: `delete_note.php/?title=here20%I20%am`. This would select the title that existed in the database with the title 'here I am', and remove it.
 
 ### UPDATE Note
 ![alt-text](https://media.tenor.com/images/3121351d9364eb14e146fec08996b5dc/tenor.gif)
 
 UPDATE file updates an existing row in the database which is identified by its' title. The given title is retrieved from the URL using the HTTP request `$_GET`. I ran into a slight problem when I tried to update everything at once: mainly, the updated field would be updated but everything else that was left blank was erased. So I created individual cases for each iteration of UPDATE author/title and it succeeded in leaving the unfilled fields in their original state.
-Using the API, I set the method to GET and typed in my title variable and replacement variable `$new_title/$new_author` in the URL. Here's an example of how that could look: `update_note/?title=jeremy&new_title=wanda`. The new title of the column row previously having the title 'jeremy' would have the new title 'wanda' applied to it. This goes the same for 'author' as well.
+Using the API, I set the method to GET and typed in my title variable and replacement variable `$new_title/$new_author` in the URL. Here's an example of how that could look: `update_note.php/?title=jeremy&new_title=wanda`. The new title of the column row previously having the title 'jeremy' would have the new title 'wanda' applied to it. This goes the same for 'author' as well.
 
 ### LIST Notes
 ![alt-text](https://media.giphy.com/media/F0QWePzwQRewM/giphy.gif)
 
-The LIST file allows the user to request to view all rows in the database table. As with the rest of the requests, the result is in JSON format. I do not use a LIST method for this however. I use the SQL SELECT method to select the entire table and return its' contents ordered by 'title'. There is no need to edit the URL with this method because I do not want to narrow down the search past selecting the table which I already do in the notes. The result is a JSON output of all rows in the database table.
+The LIST file allows the user to request to view all rows in the database table. As with the rest of the requests, the result is in JSON format. I do not use a LIST method for this however. I use the SQL SELECT method to select the entire table and return its' contents ordered by 'title'. There is no need to edit the URL with this method because I do not want to narrow down the search past selecting the table which I already do in the notes but the user can use this end point: `list_note.php/`. The result is a JSON output of all rows in the database table. 
 
 ### GET Note
 ![alt-text](https://media.giphy.com/media/26gsiCIKW7ANEmxKE/giphy.gif)
