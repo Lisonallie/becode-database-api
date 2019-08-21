@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 //create connection
 require "info.php";
 
