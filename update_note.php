@@ -19,8 +19,6 @@ $update_text = "UPDATE note SET text_entry = '".$newtext."' WHERE text_entry = '
 
 //separate each query so it doesn't delete the rest of the table
 if (mysqli_query($conn, $update_text)) {
-    var_dump($text);
-    var_dump($newtext);
 } else {
     $feedback['fail'] = "The record has not been changed.";
 }
