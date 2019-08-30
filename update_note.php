@@ -4,9 +4,11 @@ header('Access-Control-Allow-Origin: *');
 require "info.php";
 
 //sanitize and declare variable fields
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
+$title = $_GET['title'];
+$title = $conn->real_escape_string($title);
 
-$newtext = filter_var($_GET['newtext'], FILTER_SANITIZE_STRING);
+$newtext = $_GET['newtext'];
+$newtext = $conn->real_escape_string($newtext);
 
 //create array for json responses
 $feedback = array();

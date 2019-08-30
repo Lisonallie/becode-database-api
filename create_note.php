@@ -5,9 +5,12 @@ header('Access-Control-Allow-Origin: *');
 require "info.php";
 
 //sanitize and declare variable fields
-$author = filter_var($_GET['author'], FILTER_SANITIZE_STRING);
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
-$text = filter_var($_POST['text'], FILTER_SANITIZE_STRING);
+$author = $_GET['author'];
+$author = $conn->real_escape_string($author);
+$title = $_GET['title'];
+$title = $conn->real_escape_string($title);
+$text = $_POST['text'];
+$text = $conn->real_escape_string($text);
 
 //create array for json responses
 $feedback = array();
@@ -31,7 +34,6 @@ if (count($feedback) > 0) {
 } else {
     $insert = "INSERT INTO note (author, text_entry, title) VALUES ('$author', '$text', '$title')";
     if (mysqli_query($conn, $insert)) {
-        $feedback['success'] = "Your input has been accepted.";
     } else {
         $feedback['fail'] = "Your input has not been submitted.";
     }

@@ -4,7 +4,8 @@ header('Access-Control-Allow-Origin: *');
 require "info.php";
 
 //declare variable and sanitize
-$title = filter_var($_GET['title'], FILTER_SANITIZE_STRING);
+$title = $_GET['title'];
+$title = $conn->real_escape_string($title);
 
 //create array for json responses
 $feedback = array();
